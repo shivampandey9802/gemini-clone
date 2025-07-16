@@ -1,2 +1,2 @@
 # gemini-clone
-[https://gemini-clone-ecru-iota.vercel.app/]link
+[Link](https://gemini-clone-ecru-iota.vercel.app/)
