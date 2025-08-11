@@ -43,7 +43,6 @@ async function main(prompt) {
     config,
     contents,
   });
-  let fileIndex = 0;
   let fullResponse = '';
   for await (const chunk of response) {
     // console.log(chunk.text);

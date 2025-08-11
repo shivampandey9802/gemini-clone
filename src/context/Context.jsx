@@ -49,13 +49,12 @@ const ContextProvider = (props) => {
                 newResponse += "<b>" + responseArray[i] + "</b>"
             }
         }
-        let newResponse2 = newResponse.split("*").join("</br>")
+        let newResponse2 = newResponse.split("*").join("<br/>")
         let newResponseArray = newResponse2.split(" ")
         for(let i=0;i<newResponseArray.length;i++) {
             const nextWord = newResponseArray[i]
             delayPara(i, nextWord + " ")
         }
-        setResultData(newResponse2)
         setLoading(false)
         setInput("")
     }
