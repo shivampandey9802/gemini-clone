@@ -54,7 +54,10 @@ const ContextProvider = (props) => {
                 setRecentPrompt(input)
                 response = await main(input)
             }
-            let responseArray = response.split("**")
+            let responseArray = response
+                .replace(/^[#\s]+/g, "")
+                .replace(/\n#{1,6}\s+/g, "\n")
+                .split("**")
             let newResponse=""
             for(let i=0;i<responseArray.length;i++) {
                 if(i === 0 || i % 2 !== 1) {
@@ -63,7 +66,14 @@ const ContextProvider = (props) => {
                     newResponse += "<b>" + responseArray[i] + "</b>"
                 }
             }
-            let newResponse2 = newResponse.split("*").join("<br/>")
+            // Only convert double-newlines to paragraph breaks and single newlines to <br/>
+            let newResponse2 = newResponse
+                .replace(/\r/g, "")
+                .replace(/\n{2,}/g, "</p><p>")
+                .replace(/(?<!>)\n/g, "<br/>")
+            newResponse2 = `<p>${newResponse2}</p>`
+            // Collapse redundant spaces
+            newResponse2 = newResponse2.replace(/\s{3,}/g, "  ")
             let newResponseArray = newResponse2.split(" ")
             for(let i=0;i<newResponseArray.length;i++) {
                 const nextWord = newResponseArray[i]

@@ -45,8 +45,8 @@ async function main(prompt) {
   });
   let fullResponse = '';
   for await (const chunk of response) {
-    // console.log(chunk.text);
-    fullResponse += chunk.text;
+    const piece = typeof chunk.text === 'string' ? chunk.text : '';
+    fullResponse += piece;
   }
   
   return fullResponse.trimStart();
