@@ -49,7 +49,7 @@ async function main(prompt) {
     fullResponse += chunk.text;
   }
   
-  return fullResponse.slice(2,fullResponse.length);
+  return fullResponse.trimStart();
 }
 
 export default main;
